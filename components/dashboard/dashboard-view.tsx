@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Building2, Layers, ListChecks } from "lucide-react";
+import { Building2, Layers, ListChecks, Settings } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { ActivityHeatmap } from "@/components/dashboard/activity-heatmap";
 import { ProgressPanel } from "@/components/dashboard/progress-panel";
 import { PreparingForList } from "@/components/prep/preparing-for-list";
 import { CompanyPickerDialog } from "@/components/prep/company-picker-dialog";
+import { PlatformStatsOverview } from "@/components/platform/platform-stats-overview";
+import { DailyGoals } from "@/components/goals/daily-goals";
+import { MiniProjects } from "@/components/mini-projects/mini-projects";
 import { useCompaniesIndex } from "@/lib/data/use-companies-index";
 import { useQuestionsIndex } from "@/lib/data/use-questions-index";
 import { useMounted } from "@/lib/utils/use-mounted";
@@ -27,31 +30,41 @@ export function DashboardView() {
             animate={{ opacity: 1, y: 0 }}
             className="relative space-y-4"
           >
-            <p className="text-sm font-medium text-primary">LeetCode Tracker</p>
+            <p className="text-sm font-medium text-primary">prep</p>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Prep by company,
+              Code Tracker,
               <br />
-              <span className="text-primary">not by chance.</span>
+              <span className="text-primary">by the numbers.</span>
             </h1>
             <p className="max-w-lg text-sm text-muted-foreground">
-              Every company&rsquo;s most-asked questions, tracked individually —
-              know exactly where you stand before the interview.
+              Connect GitHub, LeetCode, CodeChef &amp; HackerRank — track your
+              solved progress across all platforms in one place.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <StatChip
                 icon={Building2}
                 label="companies"
-                value={mounted && companies.length ? companies.length : "…"}
+                value={mounted && companies.length ? companies.length : "..."}
               />
               <StatChip
                 icon={Layers}
                 label="unique questions"
-                value={mounted && questionsIndex ? questionsIndex.questions.length.toLocaleString() : "…"}
+                value={
+                  mounted && questionsIndex
+                    ? questionsIndex.questions.length.toLocaleString()
+                    : "..."
+                }
               />
               <StatChip icon={ListChecks} label="timeframes each" value={5} />
             </div>
           </motion.div>
         </div>
+
+        <DailyGoals />
+
+        <PlatformStatsOverview />
+
+        <MiniProjects />
 
         <Card className="p-5">
           <h2 className="mb-3 text-sm font-medium">Activity</h2>
@@ -83,6 +96,13 @@ export function DashboardView() {
           </Link>
           <Link href="/bookmarks" className="text-sm font-medium hover:text-primary">
             View bookmarks →
+          </Link>
+          <Link href="/rooms" className="text-sm font-medium hover:text-primary">
+            Study Rooms →
+          </Link>
+          <Link href="/settings" className="text-sm font-medium hover:text-primary">
+            <Settings className="mr-1 inline h-4 w-4" />
+            Settings →
           </Link>
         </Card>
       </div>

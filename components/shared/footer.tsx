@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { SVGProps } from "react";
 
-const AUTHOR_NAME = "Nishant";
-const GITHUB_USERNAME = "0xn1k";
-const LINKEDIN_URL = "https://www.linkedin.com/in/0xn1k/";
+const AUTHOR_NAME = "vijayaapardhu";
+const GITHUB_USERNAME = "vijayaapardhu";
+const LINKEDIN_URL = "https://www.linkedin.com/in/vijayaapardhu/";
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
   return (
